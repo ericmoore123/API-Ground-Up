@@ -1,0 +1,27 @@
+{
+  "name": "mocha-testing",
+  "version": "1.0.0",
+  "description": "Mocha Testing JS applications",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ericmoore123/mocha-testing-js.git"
+  },
+  "keywords": [
+    "Mocha",
+    "JS"
+  ],
+  "author": "Eric Moore",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ericmoore123/mocha-testing-js/issues"
+  },
+  "homepage": "https://github.com/ericmoore123/mocha-testing-js#readme",
+  "dependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.1.0"
+  }
+}
