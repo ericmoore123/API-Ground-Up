@@ -1,27 +1,37 @@
 // Scripts imports
 const simple = require('../scripts/simple');
+const multi = simple.multi;
+const divide = simple.divide;
+const add = simple.add;
+const subtract = simple.subtract;
 
 // Testing dependencies
-const expect = require("chai").expect;
+const chai = require('chai');
+const expect = chai.expect;
+const assert = chai.assert;
+const should = chai.should;
+
+// Test
 // console.log(simple.multi(2,4));
 
 // ================= Simple tests imports =================
 describe('Tests of basic script functions', () => {
     describe('Test multiplication method', () => {
         it('should multiply two numbers', () => {
-            expect(simple.multi(2, 4)).to.equal(8);
+            expect(multi(2, 4)).to.equal(8);
+            expect() 
         });
         it('should divide two numbers', () => {
-            expect(simple.divide(8, 2)).to.equal(4);
+            expect(divide(8, 2)).to.equal(4);
         });
     });
 
     describe('Test addition and subtraction method', () => {
         it('should add two numbers', () => {
-            expect(simple.add(2, 4)).to.equal(6);
+            expect(add(2, 4)).to.equal(6);
         });
         it('should subtract one number from another', () => {
-            expect(simple.subtract(2, 4)).to.equal(-2);
+            expect(subtract(2, 4)).to.equal(-2);
         });
     });
 });
