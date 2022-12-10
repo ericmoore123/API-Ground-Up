@@ -12,10 +12,11 @@ $ npm i
 *Verify dependencies after install.*
 
 ### Running Express API
-API code and utilities are held within teh base directory and under */utils* respectively.
+API code and utilities are held under root directory and */utils* respectively.
 ```
 $ npm run dev
 ```
+Server port can be held within a .env file by default.
 
 ### Running Tests
 Tests are held within the */test* directory as per [mocha documentation](https://mochajs.org/#getting-started).
