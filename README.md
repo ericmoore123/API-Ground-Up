@@ -1,4 +1,4 @@
-# Mocha - Chai Unit Testing
+# Mocha - Chai Unit Testing (In-Progress)
 
 Concrete examples of using Mocha and Chai to unit test JavaScript APIs and applications.
 
