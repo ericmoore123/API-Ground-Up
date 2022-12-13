@@ -1,17 +1,33 @@
+const dotenv = require('dotenv')
+dotenv.config({ path: __dirname + "/.env" });
+
+const { Pool } = require('pg');
+const pool = new Pool(); // Use pool when multiple transactions are needed
+
+// Custom Imports
 const sampleTasks = require('../data/tasks').sampleTasks;
 const validateTask = require('../utils/taskVerifier').verifyTask;
 const validatePatchObject = require('../utils/taskVerifier').verifyPatchObject;
 const taskUtils = require('../utils/taskUtils')
 
-exports.getTaskById = (req, res, next) => {
+exports.getTaskById = async (req, res, next) => {
     const taskId = parseInt(req.params.id); //string => int for comparison
-    const task = taskUtils.findTask(taskId);
-    if (!task) taskUtils.taskNotFound(taskId);
-    res.send(task);
+
+    const client = await pool.connect();
+    try{
+        const query_res = await client.query(`SELECT * FROM tasks WHERE id = ${taskId}`);
+        if(await query_res.rows.length == 0){
+            taskUtils.taskNotFound(taskId);
+        }else{
+            res.send(JSON.stringify(query_res.rows));
+        };
+    }catch(err) {
+        console.error(err);
+    };
 };
 
 exports.createNewTask = (req, res, next) => {
-    const {error} = validateTask(req.body); // Validate formatting of new task
+    const { error } = validateTask(req.body); // Validate formatting of new task
     if (error) return res.status(400).send(error.message);
 
     const task = {
@@ -26,7 +42,7 @@ exports.createNewTask = (req, res, next) => {
 exports.replaceTaskById = (req, res, next) => {
     const task = taskUtils.findTask(parseInt(req.params.id));
     if (!task) taskUtils.taskNotFound(taskId);
-    const {error} = validateTask(req.body);
+    const { error } = validateTask(req.body);
     if (error) return res.status(400).send(error.message);
 
     task.name = req.body.name;
@@ -39,11 +55,11 @@ exports.replaceTaskById = (req, res, next) => {
 exports.modifyTaskById = (req, res, next) => {
     const task = taskUtils.findTask(parseInt(req.params.id));
     if (!task) taskUtils.taskNotFound(taskId);
-    const {error} = validatePatchObject(req.body);
+    const { error } = validatePatchObject(req.body);
     if (error) return res.status(400).send(error.message);
 
-    if(req.body.name) task.name = req.body.name;
-    if(req.body.completed) task.completed = req.body.completed;
+    if (req.body.name) task.name = req.body.name;
+    if (req.body.completed) task.completed = req.body.completed;
 
     res.send(task);
 };
