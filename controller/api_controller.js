@@ -7,7 +7,6 @@ const pool = new Pool(); // Use pool when multiple transactions are needed
 // Custom Imports
 const validateTask = require('../utils/taskVerifier').verifyTask;
 const validatePatchObject = require('../utils/taskVerifier').verifyPatchObject;
-// const taskUtils = require('../utils/taskUtils');
 
 const taskLookup_db = async (id) => {
     const client = await pool.connect();
