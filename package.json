@@ -1,7 +1,7 @@
 {
-  "name": "mocha-testing",
+  "name": "api-ground-up",
   "version": "1.0.0",
-  "description": "Mocha Testing JS scripts",
+  "description": "Node API testing and CRUD uperations via. Postgres",
   "main": "index.js",
   "scripts": {
     "start": "",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ericmoore123/mocha-testing-js.git"
+    "url": "git+https://github.com/ericmoore123/API-Ground-Up.git"
   },
   "keywords": [
     "Mocha",
@@ -19,9 +19,9 @@
   "author": "Eric Moore",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ericmoore123/mocha-testing-js/issues"
+    "url": "https://github.com/ericmoore123/API-Ground-Up/issues"
   },
-  "homepage": "https://github.com/ericmoore123/mocha-testing-js#readme",
+  "homepage": "https://github.com/ericmoore123/API-Ground-Up#readme",
   "dependencies": {
     "body-parser": "^1.20.1",
     "dotenv": "^16.0.3",
