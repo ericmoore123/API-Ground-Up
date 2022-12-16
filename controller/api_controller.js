@@ -24,13 +24,21 @@ const taskLookup_db = async (id) => {
     };
 };
 
-exports.getTasks = async (req, res, next) => {
+exports.getHome = async (req, res, next) => {
     const client = await pool.connect();
     try{
         const tasks = await client.query('SELECT * FROM tasks');
         res.status(200).render('pages/index', {
             tasks: tasks.rows
         });
+    }catch(err){console.error(err)};
+};
+
+exports.getTasks = async (req, res, next) => {
+    const client = await pool.connect();
+    try{
+        const tasks = await client.query('SELECT * FROM tasks');
+        res.status(200).send(tasks.rows);
     }catch(err){
         console.error(err)
     }finally {
@@ -68,7 +76,7 @@ exports.createNewTask = async (req, res, next) => {
         const queryVals = [new_Id, req.body.name, req.body.completed];
         await client.query(queryText, queryVals);
 
-        res.status(201).send(`New DB entry with id: ${new_Id} created successfully!`);
+        res.status(200).send(`New DB entry with id: ${new_Id} created successfully!`);
     }catch(err){
         console.error(err);
     }finally {

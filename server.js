@@ -8,9 +8,13 @@ const controller = require('./controller/api_controller');
 
 const PORT = process.env.PORT || 8800;
 app.use(express.json());
+app.use(express.urlencoded({
+    extended: true
+  }));
 app.set('view engine', 'ejs');
 
 // ========== API Routes ========== 
+app.get('/', controller.getHome);
 app.get('/api/tasks', controller.getTasks);
 
 app.get('/api/tasks/:id', controller.getTaskById);
